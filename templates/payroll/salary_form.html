@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container p-8 mx-auto">
     <div class="w-full max-w-lg p-6 mx-auto bg-white rounded-lg shadow-xl">
-        <h2 class="mb-6 text-2xl font-bold text-gray-800">Update Salary for {{ employee.first_name }} {{ employee.last_name }}</h2>
+        <h2 class="mb-6 text-2xl font-bold text-gray-800">Update Salary for {{ salary.employee.first_name }} {{ salary.employee.last_name }}</h2>
         <form method="post">
             {% csrf_token %}
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -38,45 +38,3 @@
     </div>
 </div>
 {% endblock %}
-{% extends 'base.html' %}
-
-{% block title %}Salary List{% endblock %}
-
-{% block content %}
-<div class="container p-8 mx-auto">
-    <h2 class="mb-6 text-2xl font-bold text-gray-800">Salary Setup</h2>
-    <div class="p-6 bg-white rounded-lg shadow-xl">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Employee Code</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Employee Name</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Basic Pay</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">HRA %</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Allowance %</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">PF %</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Tax %</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                {% for salary in salaries %}
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.employee.emp_code }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.employee.first_name }} {{ salary.employee.last_name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.basic_pay }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.hra_percentage }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.allowance_percentage }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.pf_percentage }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ salary.tax_percentage }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <a href="{% url 'payroll:salary_update' salary.pk %}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-{% endblock %}
-

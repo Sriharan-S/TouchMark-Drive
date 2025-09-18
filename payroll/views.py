@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -84,7 +85,29 @@ def payroll_run(request):
 @login_required
 def view_payslip(request, payroll_id):
     payroll = get_object_or_404(Payroll, pk=payroll_id)
-    return render(request, 'payroll/payslip.html', {'payroll': payroll})
+
+    try:
+        salary = Salary.objects.get(employee=payroll.employee)
+    except Salary.DoesNotExist:
+        # Handle case where salary is not found, maybe redirect or show an error
+        messages.error(request, f"Salary information not found for {payroll.employee}.")
+        return redirect('payroll:payroll_run')
+
+    basic_pay = salary.basic_pay
+    hra = basic_pay * salary.hra_percentage / 100
+    allowance = basic_pay * salary.allowance_percentage / 100
+
+    pf = payroll.gross_salary * salary.pf_percentage / 100
+    tax = payroll.gross_salary * salary.tax_percentage / 100
+
+    context = {
+        'payroll': payroll,
+        'hra': hra,
+        'allowance': allowance,
+        'pf': pf,
+        'tax': tax,
+    }
+    return render(request, 'payroll/payslip.html', context)
 
 @login_required
 def download_payslip(request, payroll_id):

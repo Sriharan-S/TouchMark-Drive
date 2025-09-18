@@ -29,16 +29,16 @@
                     <h3 class="mb-2 text-lg font-semibold text-green-700 border-b">Earnings</h3>
                     <div class="space-y-2">
                         <div class="flex justify-between"><span>Basic Pay</span><span>${{ payroll.employee.salary.basic_pay|floatformat:2 }}</span></div>
-                        <div class="flex justify-between"><span>House Rent Allowance (HRA)</span><span>${{ payroll.employee.salary.hra_percentage|floatformat:2 }}</span></div>
-                        <div class="flex justify-between"><span>Allowances</span><span>${{ payroll.employee.salary.allowance_percentage|floatformat:2 }}</span></div>
+                        <div class="flex justify-between"><span>House Rent Allowance (HRA)</span><span>${{ hra|floatformat:2 }}</span></div>
+                        <div class="flex justify-between"><span>Allowances</span><span>${{ allowance|floatformat:2 }}</span></div>
                         <div class="flex justify-between pt-2 mt-2 font-bold border-t"><span>Gross Earnings</span><span>${{ payroll.gross_salary|floatformat:2 }}</span></div>
                     </div>
                 </div>
                 <div>
                     <h3 class="mb-2 text-lg font-semibold text-red-700 border-b">Deductions</h3>
                     <div class="space-y-2">
-                        <div class="flex justify-between"><span>Provident Fund (PF)</span><span>${{ payroll.employee.salary.pf_percentage|floatformat:2 }}</span></div>
-                        <div class="flex justify-between"><span>Tax</span><span>${{ payroll.employee.salary.tax_percentage|floatformat:2 }}</span></div>
+                        <div class="flex justify-between"><span>Provident Fund (PF)</span><span>${{ pf|floatformat:2 }}</span></div>
+                        <div class="flex justify-between"><span>Tax</span><span>${{ tax|floatformat:2 }}</span></div>
                          <div class="flex justify-between pt-2 mt-2 font-bold border-t"><span>Total Deductions</span><span>${{ payroll.deductions|floatformat:2 }}</span></div>
                     </div>
                 </div>
