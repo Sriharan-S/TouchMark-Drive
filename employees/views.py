@@ -13,7 +13,19 @@ def employee_create(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if form.is_valid():
-            form.save()
+            # Generate emp_code
+            last_employee = Employee.objects.order_by('id').last()
+            if last_employee:
+                last_id = last_employee.id
+            else:
+                last_id = 0
+            new_id = last_id + 1
+            # Format the ID with leading zeros, e.g., EMP001
+            emp_code = f"EMP{new_id:03d}"
+
+            employee = form.save(commit=False)
+            employee.emp_code = emp_code
+            employee.save()
             return redirect('employees:employee_list')
     else:
         form = EmployeeForm()
@@ -39,4 +51,3 @@ def employee_delete(request, pk):
         employee.save()
         return redirect('employees:employee_list')
     return render(request, 'employees/employee_confirm_delete.html', {'employee': employee})
-

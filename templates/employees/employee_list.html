@@ -49,22 +49,15 @@
                                     Active
                                 </span>
                             {% else %}
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                    <span class="w-2 h-2 mr-1 bg-gray-500 rounded-full"></span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                    <span class="w-2 h-2 mr-1 bg-red-500 rounded-full"></span>
                                     Inactive
                                 </span>
                             {% endif %}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{% url 'employees:employee_update' employee.pk %}" class="text-blue-600 hover:text-blue-800">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L14.732 5.232z"></path></svg>
-                            </a>
-                             <a href="{% url 'payroll:salary_setup' employee.pk %}" class="text-green-600 hover:text-green-800 ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path d="M8.433 7.418c.158-.103.34-.153.524-.153h.028l.524.022a1.75 1.75 0 011.504 1.504l.022.524v.028c0 .184-.05.366-.153.524l-2.093 3.14a.75.75 0 01-1.048 0L5.3 9.466a.75.75 0 010-1.048l3.133-3.002z" />
-                                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-1.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z" />
-                                </svg>
-                            </a>
+                        <td class="px-6 py-4 space-x-2 whitespace-nowrap">
+                            <a href="{% url 'employees:employee_update' employee.pk %}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <a href="{% url 'employees:employee_delete' employee.pk %}" class="text-red-600 hover:text-red-900">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}

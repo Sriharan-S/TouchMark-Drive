@@ -9,6 +9,13 @@
         <form method="post">
             {% csrf_token %}
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {% if form.instance.pk %}
+                <div class="md:col-span-2">
+                    <label for="emp_code" class="block text-sm font-medium text-gray-700">Employee Code</label>
+                    <input type="text" name="emp_code" id="emp_code" value="{{ form.instance.emp_code }}" readonly
+                           class="relative block w-full px-3 py-3 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-gray-100">
+                </div>
+                {% endif %}
                 <div>
                     <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700">First Name</label>
                     {{ form.first_name }}
@@ -24,10 +31,6 @@
                 <div class="md:col-span-2">
                     <label for="{{ form.phone.id_for_label }}" class="block text-sm font-medium text-gray-700">Phone</label>
                     {{ form.phone }}
-                </div>
-                <div>
-                    <label for="{{ form.emp_code.id_for_label }}" class="block text-sm font-medium text-gray-700">Employee Code</label>
-                    {{ form.emp_code }}
                 </div>
                 <div>
                     <label for="{{ form.date_of_joining.id_for_label }}" class="block text-sm font-medium text-gray-700">Date of Joining</label>

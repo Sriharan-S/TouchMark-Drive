@@ -28,6 +28,31 @@ def salary_setup(request, employee_id):
     return render(request, 'payroll/salary_setup.html', {'form': form, 'employee': employee})
 
 @login_required
+def salary_list(request):
+    # Ensure a Salary object exists for every active employee
+    active_employees = Employee.objects.filter(is_active=True)
+    for employee in active_employees:
+        Salary.objects.get_or_create(employee=employee)
+
+    # Fetch all salary objects for active employees to display
+    salaries = Salary.objects.filter(employee__is_active=True).select_related('employee')
+    return render(request, 'payroll/salary_list.html', {'salaries': salaries})
+
+@login_required
+def salary_update(request, pk):
+    salary = get_object_or_404(Salary, pk=pk)
+    if request.method == 'POST':
+        form = SalaryForm(request.POST, instance=salary)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Salary details updated successfully.')
+            return redirect('payroll:salary_list')
+    else:
+        form = SalaryForm(instance=salary)
+
+    return render(request, 'payroll/salary_form.html', {'form': form, 'salary': salary})
+
+@login_required
 def payroll_run(request):
     if request.method == 'POST':
         form = PayrollRunForm(request.POST)
@@ -68,4 +93,3 @@ def download_payslip(request, payroll_id):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="payslip_{payroll.employee.emp_code}_{payroll.month}_{payroll.year}.pdf"'
     return response
-
