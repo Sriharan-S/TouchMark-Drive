@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Salary Setup{% endblock %}
+
+{% block content %}
+<div class="container p-8 mx-auto">
+    <div class="w-full max-w-2xl p-6 mx-auto bg-white rounded-lg shadow-xl">
+        <h2 class="mb-6 text-2xl font-bold text-gray-800">Salary Setup for <span class="text-blue-600">{{ employee.first_name }} {{ employee.last_name }}</span></h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="p-4 mb-4 bg-gray-100 border border-gray-200 rounded-lg">
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Employee Code</label>
+                        <p class="mt-1 text-sm font-semibold text-gray-800">{{ employee.emp_code }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500">Name</label>
+                        <p class="mt-1 text-sm font-semibold text-gray-800">{{ employee.first_name }} {{ employee.last_name }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div>
+                    <label for="{{ form.basic_pay.id_for_label }}" class="block text-sm font-medium text-gray-700">Basic Pay ($)</label>
+                    {{ form.basic_pay }}
+                </div>
+                <div>
+                    <label for="{{ form.hra_percentage.id_for_label }}" class="block text-sm font-medium text-gray-700">HRA (%)</label>
+                    {{ form.hra_percentage }}
+                </div>
+                <div>
+                    <label for="{{ form.allowance_percentage.id_for_label }}" class="block text-sm font-medium text-gray-700">Allowance (%)</label>
+                    {{ form.allowance_percentage }}
+                </div>
+                <div>
+                    <label for="{{ form.pf_percentage.id_for_label }}" class="block text-sm font-medium text-gray-700">PF (%)</label>
+                    {{ form.pf_percentage }}
+                </div>
+                <div>
+                    <label for="{{ form.tax_percentage.id_for_label }}" class="block text-sm font-medium text-gray-700">Tax (%)</label>
+                    {{ form.tax_percentage }}
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-8 space-x-4">
+                <a href="{% url 'employees:employee_list' %}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</a>
+                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

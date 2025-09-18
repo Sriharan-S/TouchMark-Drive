@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+<div class="container p-8 mx-auto">
+    <div class="w-full max-w-md p-6 mx-auto bg-white rounded-lg shadow-xl">
+         <h2 class="text-lg font-bold text-gray-800">Confirm Deletion</h2>
+         <p class="mt-2 text-sm text-gray-600">Are you sure you want to delete the employee "{{ employee }}"? This action will mark the employee as inactive and they will be excluded from future payroll runs.</p>
+         <form method="post">
+            {% csrf_token %}
+             <div class="flex justify-end mt-6 space-x-4">
+                <a href="{% url 'employees:employee_list' %}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</a>
+                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700">Delete</button>
+             </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

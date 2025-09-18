@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Create{% endif %} Employee{% endblock %}
+
+{% block content %}
+<div class="container p-8 mx-auto">
+    <div class="w-full max-w-lg p-6 mx-auto bg-white rounded-lg shadow-xl">
+        <h2 class="mb-6 text-2xl font-bold text-gray-800">{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Employee</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                    <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700">First Name</label>
+                    {{ form.first_name }}
+                </div>
+                <div>
+                    <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="md:col-span-2">
+                    <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">Email</label>
+                    {{ form.email }}
+                </div>
+                <div class="md:col-span-2">
+                    <label for="{{ form.phone.id_for_label }}" class="block text-sm font-medium text-gray-700">Phone</label>
+                    {{ form.phone }}
+                </div>
+                <div>
+                    <label for="{{ form.emp_code.id_for_label }}" class="block text-sm font-medium text-gray-700">Employee Code</label>
+                    {{ form.emp_code }}
+                </div>
+                <div>
+                    <label for="{{ form.date_of_joining.id_for_label }}" class="block text-sm font-medium text-gray-700">Date of Joining</label>
+                    {{ form.date_of_joining }}
+                </div>
+            </div>
+            <div class="flex justify-end mt-6 space-x-4">
+                <a href="{% url 'employees:employee_list' %}" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</a>
+                <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Save Employee</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
