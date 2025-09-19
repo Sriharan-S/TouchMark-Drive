@@ -24,3 +24,16 @@ class Payroll(models.Model):
 
     def __str__(self):
         return f"Payroll for {self.employee} - {self.month}/{self.year}"
+
+class Attendance(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    month = models.IntegerField()
+    year = models.IntegerField()
+    total_working_days = models.IntegerField()
+    days_present = models.IntegerField()
+
+    class Meta:
+        unique_together = ('employee', 'month', 'year')
+
+    def __str__(self):
+        return f"Attendance for {self.employee} - {self.month}/{self.year}"

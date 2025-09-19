@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'employees',
     'payroll',
+    'payroll.templatetags',
 ]
 
 MIDDLEWARE = [

@@ -3,13 +3,10 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<!-- Main Content -->
 <div class="container p-8 mx-auto">
-    <!-- Navigation Cards Section -->
     <div class="flex items-center justify-center min-h-full">
         <main class="grid grid-cols-1 gap-8 md:grid-cols-3 md:max-w-4xl">
 
-            <!-- Employees Card -->
             <div class="flex flex-col items-center p-6 text-center bg-white rounded-lg shadow-md">
                 <div class="p-3 mb-4 bg-gray-100 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -24,7 +21,6 @@
                 </a>
             </div>
 
-            <!-- Salary Setup Card -->
             <div class="flex flex-col items-center p-6 text-center bg-white rounded-lg shadow-md">
                 <div class="p-3 mb-4 bg-gray-100 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -39,7 +35,20 @@
                 </a>
             </div>
 
-            <!-- Payroll Card -->
+            <div class="flex flex-col items-center p-6 text-center bg-white rounded-lg shadow-md">
+                <div class="p-3 mb-4 bg-gray-100 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-gray-800">Attendance</h2>
+                <p class="mt-1 text-sm text-gray-500">Mark employee attendance</p>
+                <div class="flex-grow"></div>
+                <a href="{% url 'payroll:attendance' %}" class="w-full px-4 py-2 mt-auto font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Mark Attendance
+                </a>
+            </div>
+
             <div class="flex flex-col items-center p-6 text-center bg-white rounded-lg shadow-md">
                 <div class="p-3 mb-4 bg-gray-100 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
